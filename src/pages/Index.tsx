@@ -7,7 +7,11 @@ import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
+console.log("Index component is loading");
+
 const Index = () => {
+  console.log("Index component is rendering");
+
   const subjects = [
     { name: "English", icon: "📚", description: "Comprehensive English literature and grammar" },
     { name: "Tamil", icon: "🇮🇳", description: "Tamil language and literature" },
@@ -90,19 +94,17 @@ const Index = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {subjects.map((subject, index) => (
-              <Link key={index} to={`/subjects/${subject.name.toLowerCase().replace(' ', '-')}`}>
-                <Card className="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-2 bg-white border-2 hover:border-blue-300">
-                  <CardHeader className="text-center">
-                    <div className="text-4xl mb-2">{subject.icon}</div>
-                    <CardTitle className="text-xl text-blue-600">{subject.name}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <CardDescription className="text-center text-gray-600">
-                      {subject.description}
-                    </CardDescription>
-                  </CardContent>
-                </Card>
-              </Link>
+              <Card key={index} className="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-2 bg-white border-2 hover:border-blue-300">
+                <CardHeader className="text-center">
+                  <div className="text-4xl mb-2">{subject.icon}</div>
+                  <CardTitle className="text-xl text-blue-600">{subject.name}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-center text-gray-600">
+                    {subject.description}
+                  </CardDescription>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
@@ -198,8 +200,8 @@ const Index = () => {
                 <Link to="/admin" className="text-blue-400 hover:text-blue-300 transition-colors">
                   Admin Portal
                 </Link>
-                <Link to="/contact" className="text-blue-400 hover:text-blue-300 transition-colors">
-                  Contact Us
+                <Link to="/dashboard" className="text-blue-400 hover:text-blue-300 transition-colors">
+                  Dashboard
                 </Link>
               </div>
             </div>

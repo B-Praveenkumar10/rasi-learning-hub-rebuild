@@ -1,55 +1,66 @@
 
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { BookOpen, Menu, X } from "lucide-react";
-import { useState } from "react";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
     <header className="bg-white shadow-lg sticky top-0 z-50">
       <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center py-4">
+        <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <div className="bg-gradient-to-r from-blue-600 to-green-600 p-2 rounded-lg">
-              <BookOpen className="h-8 w-8 text-white" />
+              <BookOpen className="h-6 w-6 text-white" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-gray-800">RASI</h1>
-              <p className="text-sm text-gray-600">INSTITUTIONS</p>
+              <h1 className="text-xl font-bold text-gray-800">RASI INSTITUTIONS</h1>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <Link to="/" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
+            <Link 
+              to="/" 
+              className={`text-gray-600 hover:text-blue-600 transition-colors ${
+                location.pathname === '/' ? 'text-blue-600 font-semibold' : ''
+              }`}
+            >
               Home
             </Link>
-            <Link to="/courses" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
-              Courses
+            <Link 
+              to="/dashboard" 
+              className={`text-gray-600 hover:text-blue-600 transition-colors ${
+                location.pathname === '/dashboard' ? 'text-blue-600 font-semibold' : ''
+              }`}
+            >
+              Dashboard
             </Link>
-            <Link to="/subjects" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
-              Subjects
-            </Link>
-            <Link to="/about" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
-              About
-            </Link>
-            <Link to="/contact" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
-              Contact
+            <Link 
+              to="/admin" 
+              className={`text-gray-600 hover:text-blue-600 transition-colors ${
+                location.pathname === '/admin' ? 'text-blue-600 font-semibold' : ''
+              }`}
+            >
+              Admin
             </Link>
           </nav>
 
           {/* Desktop Auth Buttons */}
           <div className="hidden md:flex items-center space-x-4">
             <Link to="/login">
-              <Button variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white">
+              <Button variant="outline" size="sm">
                 Login
               </Button>
             </Link>
             <Link to="/register">
-              <Button className="bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700">
+              <Button size="sm" className="bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700">
                 Register
               </Button>
             </Link>
@@ -57,40 +68,52 @@ const Header = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="md:hidden p-2 rounded-md text-gray-600 hover:text-blue-600 hover:bg-gray-100"
+            onClick={toggleMenu}
           >
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 border-t">
+          <div className="md:hidden py-4 border-t border-gray-200">
             <nav className="flex flex-col space-y-4">
-              <Link to="/" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
+              <Link 
+                to="/" 
+                className={`text-gray-600 hover:text-blue-600 transition-colors ${
+                  location.pathname === '/' ? 'text-blue-600 font-semibold' : ''
+                }`}
+                onClick={toggleMenu}
+              >
                 Home
               </Link>
-              <Link to="/courses" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
-                Courses
+              <Link 
+                to="/dashboard" 
+                className={`text-gray-600 hover:text-blue-600 transition-colors ${
+                  location.pathname === '/dashboard' ? 'text-blue-600 font-semibold' : ''
+                }`}
+                onClick={toggleMenu}
+              >
+                Dashboard
               </Link>
-              <Link to="/subjects" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
-                Subjects
+              <Link 
+                to="/admin" 
+                className={`text-gray-600 hover:text-blue-600 transition-colors ${
+                  location.pathname === '/admin' ? 'text-blue-600 font-semibold' : ''
+                }`}
+                onClick={toggleMenu}
+              >
+                Admin
               </Link>
-              <Link to="/about" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
-                About
-              </Link>
-              <Link to="/contact" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
-                Contact
-              </Link>
-              <div className="flex flex-col space-y-2 pt-4">
-                <Link to="/login">
-                  <Button variant="outline" className="w-full border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white">
+              <div className="flex flex-col space-y-2 pt-4 border-t border-gray-200">
+                <Link to="/login" onClick={toggleMenu}>
+                  <Button variant="outline" size="sm" className="w-full">
                     Login
                   </Button>
                 </Link>
-                <Link to="/register">
-                  <Button className="w-full bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700">
+                <Link to="/register" onClick={toggleMenu}>
+                  <Button size="sm" className="w-full bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700">
                     Register
                   </Button>
                 </Link>
