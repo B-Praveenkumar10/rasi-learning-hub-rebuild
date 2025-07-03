@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom";
-import { BookOpen, MapPin, Phone, Mail, Facebook, Twitter, Instagram } from "lucide-react";
+import { MapPin, Phone, Mail, Facebook, Twitter, Instagram } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -11,7 +11,11 @@ const Footer = () => {
           <div>
             <div className="flex items-center space-x-2 mb-4">
               <div className="bg-gradient-to-r from-blue-600 to-green-600 p-2 rounded-lg">
-                <BookOpen className="h-6 w-6 text-white" />
+                <img
+                  src="/path-to-your-image/logo.png"
+                  alt="Rasi Logo"
+                  className="h-6 w-6"
+                />
               </div>
               <div>
                 <h3 className="text-xl font-bold">RASI INSTITUTIONS</h3>

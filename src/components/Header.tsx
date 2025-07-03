@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -17,7 +17,11 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <div className="bg-gradient-to-r from-blue-600 to-green-600 p-2 rounded-lg">
-              <BookOpen className="h-6 w-6 text-white" />
+              <img
+                src="/path-to-your-image/logo.png"
+                alt="Rasi Logo"
+                className="h-6 w-6"
+              />
             </div>
             <div>
               <h1 className="text-xl font-bold text-gray-800">RASI INSTITUTIONS</h1>
