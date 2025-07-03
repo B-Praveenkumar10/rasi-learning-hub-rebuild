@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { BookOpen, User, Calendar, Clock, Award, TrendingUp, Bell, Settings } from "lucide-react";
+import { BookOpen, User, Calendar, Clock, Award, TrendingUp, Bell, Settings, GraduationCap } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
